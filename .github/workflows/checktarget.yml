@@ -10,4 +10,4 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Scan all macOS targets and print it out
-      run: llc --version
+      run: clang++ -print-targets

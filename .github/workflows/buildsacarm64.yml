@@ -1,0 +1,25 @@
+name: Build SAC (aarch64 / armv8) Mac M1 / M2 / M3+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Git clone vvdec
+      run: git clone --depth=1 https://github.com/MartinEesmaa/sac
+    - name: Build sac
+      run: cd sac/src && clang++ main.cpp cmdline.cpp ./common/*.cpp ./file/*.cpp ./libsac/*.cpp ./model/*.cpp ./pred/*.cpp -std=c++11 -static -O2 -s -osac_arm64 -target arm64-apple-macos11 && cd ../../
+    - name: Zip Release of sac
+      uses: TheDoctor0/zip-release@0.7.1
+      with:
+        filename: sac.zip
+        path: ./sac/src
+    - name: Upload a Build Artifact of SAC
+      uses: actions/upload-artifact@v3.0.0
+      with:
+        name: sac_arm64
+        path: ./sac.zip

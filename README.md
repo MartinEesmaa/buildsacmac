@@ -1,0 +1,1 @@
+# SAC (State of the Art Audio Codec Lossless) macOS build artifacts

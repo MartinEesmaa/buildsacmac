@@ -9,4 +9,4 @@ jobs:
     runs-on: macos-latest
     steps:
     - name: Scan all macOS targets and print it out
-      run: clang++ -print-targets
+      run: clang++ -v

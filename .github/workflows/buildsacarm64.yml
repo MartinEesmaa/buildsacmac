@@ -12,7 +12,7 @@ jobs:
     - name: Git clone vvdec
       run: git clone --depth=1 https://github.com/MartinEesmaa/sac
     - name: Build sac
-      run: cd sac/src && sudo clang++ main.cpp cmdline.cpp ./common/*.cpp ./file/*.cpp ./libsac/*.cpp ./model/*.cpp ./pred/*.cpp -isysroot $(xcrun --sdk macosx --show-sdk-path) -L/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib -std=c++11 -static -O2 -osac_arm64 -target arm64-apple-darwin20 && cd ../../
+      run: cd sac/src && sudo clang++ main.cpp cmdline.cpp ./common/*.cpp ./file/*.cpp ./libsac/*.cpp ./model/*.cpp ./pred/*.cpp -std=c++11 -O2 -osac_arm64 -target arm64-apple-darwin20 && cd ../../
     - name: Zip Release of sac
       uses: TheDoctor0/zip-release@0.7.1
       with:
